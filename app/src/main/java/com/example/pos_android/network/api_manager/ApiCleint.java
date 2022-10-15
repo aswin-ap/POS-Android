@@ -1,7 +1,11 @@
 package com.example.pos_android.network.api_manager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,6 +19,10 @@ public class ApiCleint {
 
         return retrofit1;
     }
+
+    static Gson gson = new GsonBuilder()
+            .setLenient()
+            .create();
 
 
 
@@ -35,7 +43,7 @@ public class ApiCleint {
                     //.baseUrl(BuildConfig.BASEURL_STAGING)
                     .client(okClient())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
         return retrofit1;
