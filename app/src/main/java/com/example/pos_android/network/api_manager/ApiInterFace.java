@@ -1,7 +1,8 @@
 package com.example.pos_android.network.api_manager;
 
-import com.example.pos_android.data.LoginResponse;
+import com.example.pos_android.data.model.LoginResponse;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -13,7 +14,7 @@ public interface ApiInterFace {
 
     @FormUrlEncoded
     @POST("driver/login")
-    Call<LoginResponse> LoginUser(
+    Observable<LoginResponse> LoginUser(
             @Field("username") String username,
             @Field("password") String password);
 

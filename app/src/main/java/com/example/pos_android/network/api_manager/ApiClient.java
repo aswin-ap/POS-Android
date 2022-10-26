@@ -10,24 +10,19 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiCleint {
+public class ApiClient {
 
-    private static Retrofit retrofit1 = null;
-
-
-    public static Retrofit dataset(){
-
-        return retrofit1;
-    }
+    private static Retrofit retrofit1;
 
     static Gson gson = new GsonBuilder()
             .setLenient()
             .create();
 
-
-
     private static OkHttpClient okClient() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
                 .connectTimeout(7, TimeUnit.SECONDS)
                 .writeTimeout(7, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)

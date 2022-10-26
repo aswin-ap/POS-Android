@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pos_android.R;
 import com.example.pos_android.view.login.LoginActivity;
+import com.example.pos_android.view.user.HomeActivity;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
 
             Intent i = new Intent(SplashActivity.this,
-                    LoginActivity.class);
+                    HomeActivity.class);
             startActivity(i);
             finishAffinity();
 

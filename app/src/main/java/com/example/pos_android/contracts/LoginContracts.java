@@ -1,6 +1,6 @@
-package com.example.pos_android.Contracts;
+package com.example.pos_android.contracts;
 
-import com.example.pos_android.data.LoginResponse;
+import com.example.pos_android.data.model.LoginResponse;
 
 public interface LoginContracts {
     interface View extends BaseView {
@@ -12,7 +12,7 @@ public interface LoginContracts {
     }
 
     interface Presenter extends BasePresenter {
-        void CallLOGIN(String user , String password);
+        void callLogin(String user , String password);
         void onApiResponse(LoginResponse saveResponse);
 
 
