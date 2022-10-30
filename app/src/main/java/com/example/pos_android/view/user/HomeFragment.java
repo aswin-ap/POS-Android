@@ -14,7 +14,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.pos_android.R;
-import com.example.pos_android.adapters.PopularAdapter;
+import com.example.pos_android.adapter.PopularAdapter;
 import com.example.pos_android.data.model.PopularModel;
 
 import java.util.ArrayList;
@@ -99,10 +99,8 @@ public class HomeFragment extends Fragment {
 
     private void initData() {
         slideModels.add(new SlideModel(R.drawable.poster, ScaleTypes.FIT));
-        slideModels.add(new SlideModel("https://images.app.goo.gl/iwRjbCkMhjRqU3QKA", ScaleTypes.FIT));
-        slideModels.add(new SlideModel("https://picsum.photos/id/237/200/300", ScaleTypes.FIT));
-        slideModels.add(new SlideModel("https://picsum.photos/seed/picsum/200/300", ScaleTypes.FIT));
-
+        slideModels.add(new SlideModel("https://c8.alamy.com/comp/2AAMYCB/set-of-poster-offer-delicious-fast-food-2AAMYCB.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://thumbs.dreamstime.com/z/fast-food-best-offer-banner-template-restaurant-cafe-design-element-poster-invitation-voucher-flyer-coupon-brochure-vector-153266434.jpg", ScaleTypes.FIT));
 
 
         popularArrayList.add(new PopularModel("Biriyani", R.drawable.dm1, "biriyaniii"));

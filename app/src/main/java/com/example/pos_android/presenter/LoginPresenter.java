@@ -3,20 +3,22 @@ package com.example.pos_android.presenter;
 import android.content.Context;
 
 import com.example.pos_android.R;
-import com.example.pos_android.contracts.LoginContracts;
+import com.example.pos_android.contracts.LoginContract;
 import com.example.pos_android.data.model.LoginResponse;
+import com.example.pos_android.data.model.request.LoginRequestData;
 import com.example.pos_android.network.api_manager.ApiDataManager;
 import com.example.pos_android.utils.NetworkManager;
 
-public class LoginPresenter implements LoginContracts.Presenter {
+public class LoginPresenter implements LoginContract.Presenter {
 
-    LoginContracts.View mView;
+    LoginContract.View mView;
     ApiDataManager mApiDataManager;
     Context mContext;
 
-    public LoginPresenter(LoginContracts.View mView) {
+    public LoginPresenter(LoginContract.View mView, Context context) {
         mApiDataManager = new ApiDataManager();
         this.mView = mView;
+        mContext = context;
     }
 
     @Override
@@ -29,15 +31,19 @@ public class LoginPresenter implements LoginContracts.Presenter {
     public void callLogin(String user, String password) {
         if (NetworkManager.isNetworkAvailable(mContext)) {
             mView.showProgressBar();
-            mApiDataManager.LoginUser(user, password, this);
+
+            LoginRequestData requestData = new LoginRequestData(user, password);
+            mApiDataManager.loginUser(requestData, this);
+
         } else mView.showWarningMessage(mContext.getResources().getString(R.string.no_network));
     }
 
     @Override
     public void onApiResponse(LoginResponse saveResponse) {
         mView.hideProgressBar();
-        if (saveResponse != null) {
-            mView.showSuccess("Success");
-        }
+        if (saveResponse.getStatus()) {
+            mView.showSuccess(saveResponse.getMessage());
+        } else
+            mView.showApiErrorWarning(saveResponse.getMessage());
     }
 }

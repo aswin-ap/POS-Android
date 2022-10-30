@@ -50,7 +50,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public void showSnackBar(View view, String text) {
         Snackbar.make(view, text, Snackbar.LENGTH_SHORT)
-                .setBackgroundTint(getResources().getColor(R.color.purple_500))
+                .setBackgroundTint(getResources().getColor(R.color.orange_700))
                 .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                 .show();
     }

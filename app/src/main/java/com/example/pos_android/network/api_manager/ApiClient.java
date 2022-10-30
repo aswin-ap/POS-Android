@@ -1,4 +1,5 @@
 package com.example.pos_android.network.api_manager;
+import com.example.pos_android.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -7,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
@@ -35,9 +36,9 @@ public class ApiClient {
 
         if (retrofit1 == null) {
             retrofit1 = new Retrofit.Builder()
-                    //.baseUrl(BuildConfig.BASEURL_STAGING)
+                    .baseUrl(BuildConfig.BASE_URL_LOCAL)
                     .client(okClient())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }

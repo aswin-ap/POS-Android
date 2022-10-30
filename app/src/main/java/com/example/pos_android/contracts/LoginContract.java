@@ -2,7 +2,7 @@ package com.example.pos_android.contracts;
 
 import com.example.pos_android.data.model.LoginResponse;
 
-public interface LoginContracts {
+public interface LoginContract {
     interface View extends BaseView {
 
         void showSuccess(String message);

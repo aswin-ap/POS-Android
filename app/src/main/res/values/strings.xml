@@ -3,4 +3,5 @@
     <string name="no_network">No network connection. Please try again later.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="terms_and_conditions">By tapping sign up you accept our terms and conditions</string>
 </resources>

@@ -58,12 +58,12 @@
 
         <!--  Email Label -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField"
+            android:id="@+id/email_layout"
             style="@style/roundedMaterialTextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            app:endIconDrawable="@drawable/ic_baseline_email_24"
+            android:hint="Username"
+            app:endIconDrawable="@drawable/ic_person"
             app:endIconMode="custom">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -74,9 +74,27 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--  Email Label -->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/email_layout"-->
+        <!--            style="@style/roundedMaterialTextInputTheme"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:hint="Email"-->
+        <!--            app:endIconDrawable="@drawable/ic_baseline_email_24"-->
+        <!--            app:endIconMode="custom">-->
+
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:id="@+id/txt_email"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:inputType="textEmailAddress" />-->
+
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
         <!--  Password Label -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_txt_layout"
+            android:id="@+id/password_layout"
             style="@style/roundedMaterialTextInputTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
