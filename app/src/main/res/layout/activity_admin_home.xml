@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.admin.AdminHomeActivity">
-<!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        >-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,24 +20,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="30dp"
-                android:gravity="end"
+                android:gravity="start|center"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Dashboard\nAdd your Menu and Table"
-                    android:textColor="@color/orange_700"
-                    android:textSize="22dp"
-                    android:gravity="end"
-                    android:layout_marginEnd="20dp"
-                    android:textStyle="bold" />
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/app_main" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Dashboard"
+                    android:textColor="@color/orange_700"
+                    android:textSize="22dp"
+                    android:layout_marginEnd="20dp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -206,7 +205,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:gravity="center"
-                            android:text="Profile"
+                            android:text="Report"
                             android:textColor="@color/black"
                             android:textSize="17sp"
                             android:textStyle="bold"
@@ -222,7 +221,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="32dp"
                             android:gravity="center"
-                            android:text="Click to View Your Profile"
+                            android:text="To view your daily report"
                             android:textAllCaps="true"
                             android:textColor="@color/black"
                             android:textSize="12sp"
@@ -235,7 +234,7 @@
                         android:layout_width="0dp"
                         android:layout_height="130dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/man"
+                        android:src="@drawable/report"
                         android:layout_marginEnd="30dp"
                         app:layout_constraintDimensionRatio="w,1:1"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -244,19 +243,73 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/add_item1"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="48dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/item_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:gravity="center"
+                            android:text="Profile"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            app:layout_constraintBottom_toTopOf="@+id/txt_pro"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txt_pro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="32dp"
+                            android:gravity="center"
+                            android:text="Click to View Your Profile"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/man"
+                        app:layout_constraintDimensionRatio="w,1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="30dp"
+                        tools:ignore="contentDescription" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerOptions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="3"
-                tools:itemCount="20"
-                android:visibility="gone"
-                tools:listitem="@layout/recycler_layout_options" />
 
         </LinearLayout>
-<!--    </androidx.core.widget.NestedScrollView>-->
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
