@@ -1,6 +1,9 @@
 package com.example.pos_android.view.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import com.example.pos_android.databinding.ActivityAdminHomeBinding;
 import com.example.pos_android.view.BaseActivity;
 
@@ -16,12 +19,22 @@ public class AdminHomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAdminHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initData();
+        initUi();
+        btnClick();
 
 
     }
 
-    private void initData() {
+    private void initUi() {
+
+    }
+    private void btnClick() {
+        binding.addFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),AddFoodActivity.class));
+            }
+        });
 
     }
 }

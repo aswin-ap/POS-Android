@@ -47,7 +47,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/add_cat"
+                    android:id="@+id/add_food"
                     android:layout_width="match_parent"
                     android:layout_height="180dp">
 
