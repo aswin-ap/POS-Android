@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.pos_android.view.user.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_tableReservationFragment"
+            app:destination="@id/tableReservationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/discountFragment"
         android:name="com.example.pos_android.view.user.DiscountFragment"
@@ -25,4 +29,9 @@
         android:name="com.example.pos_android.view.user.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/tableReservationFragment"
+        android:name="com.example.pos_android.view.user.TableReservationFragment"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
 </navigation>
