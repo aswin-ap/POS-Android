@@ -58,7 +58,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
+                android:gravity="start"
+                android:text="Select Date"
+                android:textColor="@color/black"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
+
+
     </ScrollView>
 
 
