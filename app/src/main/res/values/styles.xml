@@ -19,5 +19,12 @@
         <item name="boxCornerRadiusTopStart">25dp</item>
     </style>
 
+    <style name="normalMaterialTextInputTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextColor">@color/black</item>
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+    </style>
+
 
 </resources>

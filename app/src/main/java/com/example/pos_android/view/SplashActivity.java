@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
 
             Intent i = new Intent(SplashActivity.this,
-                    LoginActivity.class);
+                    HomeActivity.class);
             startActivity(i);
             finishAffinity();
 

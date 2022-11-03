@@ -63,6 +63,10 @@ public class TableReservationFragment extends Fragment {
         binding.rvTime.setHasFixedSize(true);
         binding.rvTime.setAdapter(timeSelectionAdapter);
 
+        binding.btnContinue.setOnClickListener( v -> {
+
+        });
+
 
     }
 }
