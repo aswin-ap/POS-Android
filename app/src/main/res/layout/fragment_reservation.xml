@@ -54,6 +54,7 @@
                 android:textStyle="bold" />
 
             <include
+                android:id="@+id/count_layout"
                 layout="@layout/add_guest_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,6 +90,23 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
+                android:gravity="start"
+                android:text="Select Table"
+                android:textColor="@color/black"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" />
