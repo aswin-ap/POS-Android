@@ -12,7 +12,7 @@ public class SessionManager {
     Context context;
     private static final String PREF_NAME = "pos_android";
     private static final String IS_LOGGED_IN = "isLoggedIn";
-    private static final String USERID = "userId";
+    private static final String USER_TOKEN = "userToken";
     private static final String USERNAME = "userName";
 
     public SessionManager(Context context) {
@@ -26,8 +26,8 @@ public class SessionManager {
         editor.apply();
     }
 
-    public void setUserId(String name) {
-        editor.putString(USERID, name);
+    public void setUserToken(String name) {
+        editor.putString(USER_TOKEN, name);
         editor.apply();
     }
 
@@ -41,8 +41,8 @@ public class SessionManager {
         return sharedPref.getBoolean(IS_LOGGED_IN, false);
     }
 
-    public String getUserId() {
-        return sharedPref.getString(USERID, "");
+    public String getUserToken() {
+        return sharedPref.getString(USER_TOKEN, "");
     }
 
     public String getUserName() {

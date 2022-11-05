@@ -17,16 +17,21 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.pos_android.R;
 import com.example.pos_android.adapter.PopularAdapter;
+import com.example.pos_android.contracts.UserHomeContract;
 import com.example.pos_android.data.model.PopularModel;
+import com.example.pos_android.data.model.UserHomeResponse;
+import com.example.pos_android.databinding.FragmentHomeBinding;
+import com.example.pos_android.view.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment implements UserHomeContract.View {
 
+    private FragmentHomeBinding binding;
     View view;
-    CardView bookingImage;
+    PopularAdapter popularAdapter;
     List<SlideModel> slideModels = new ArrayList<>();
     ArrayList<PopularModel> popularArrayList = new ArrayList<>();
     ArrayList<PopularModel> recentArray = new ArrayList<>();
@@ -40,26 +45,21 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = FragmentHomeBinding.inflate(inflater,container,false);
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        ImageSlider imgSlider = view.findViewById(R.id.image_slider);
-        RecyclerView popularRecyclerView = view.findViewById(R.id.popular_recyclerview);
-        RecyclerView recentRecyclerview = view.findViewById(R.id.recent_recyclerview);
-        bookingImage = view.findViewById(R.id.iv_booking);
 
         initData();
-
-
-        imgSlider.setImageList(slideModels);
+        binding.imageSlider.setImageList(slideModels);
 
         PopularAdapter popularAdapter = new PopularAdapter(popularArrayList);
-        popularRecyclerView.setAdapter(popularAdapter);
-        popularRecyclerView.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
+        binding.popularRecyclerview.setAdapter(popularAdapter);
+        binding.popularRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
 
         popularAdapter = new PopularAdapter(recentArray);
-        recentRecyclerview.setAdapter(popularAdapter);
-        recentRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
+        binding.recentRecyclerview.setAdapter(popularAdapter);
+        binding.recentRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
 
-        return view;
+        return binding.getRoot();
     }
 
     private void initData() {
@@ -78,8 +78,35 @@ public class HomeFragment extends Fragment {
         recentArray.add(new PopularModel("Brosted", R.drawable.dm1, "biriyaniii"));
         recentArray.add(new PopularModel("Mandhi", R.drawable.dm2, "delicious food"));
 
-        bookingImage.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_tableReservationFragment);
+        binding.ivBooking.setOnClickListener(v -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_homeFragment_to_tableReservationFragment);
         });
+    }
+
+    @Override
+    public void showProgressBar() {
+        showLoadingDialog(requireContext());
+    }
+
+    @Override
+    public void hideProgressBar() {
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void showApiErrorWarning(String string) {
+        hideLoadingDialog();
+        showToast(requireContext(),string);
+    }
+
+    @Override
+    public void showWarningMessage(String message) {
+        showToast(requireContext(),message);
+    }
+
+
+    @Override
+    public void showUserResponse(UserHomeResponse response) {
+
     }
 }

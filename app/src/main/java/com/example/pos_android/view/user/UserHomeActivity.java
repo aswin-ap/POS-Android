@@ -11,7 +11,7 @@ import com.example.pos_android.R;
 import com.example.pos_android.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomeActivity extends AppCompatActivity {
+public class UserHomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
 
     @Override
