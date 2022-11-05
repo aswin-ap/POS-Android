@@ -14,7 +14,7 @@ public interface UserHomeContract {
 
     interface Presenter extends BasePresenter {
 
-        void getHomeDetails(String token);
+        void getHomeDetails();
         void onHomeResponseCallback(UserHomeResponse userHomeResponse);
 
     }

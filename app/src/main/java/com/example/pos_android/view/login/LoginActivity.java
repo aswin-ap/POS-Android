@@ -11,6 +11,7 @@ import com.example.pos_android.utils.Validation;
 import com.example.pos_android.view.BaseActivity;
 import com.example.pos_android.view.admin.AdminHomeActivity;
 import com.example.pos_android.view.register.RegisterActivity;
+import com.example.pos_android.view.user.UserHomeActivity;
 
 import java.util.Objects;
 
@@ -89,7 +90,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void showSuccess(String message) {
         showToast(LoginActivity.this, message);
         sessionManager.setLogin(true);
-        startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
+        startActivity(new Intent(LoginActivity.this, UserHomeActivity.class));
         finishAffinity();
     }
 

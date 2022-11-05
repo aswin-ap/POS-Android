@@ -6,14 +6,14 @@ import com.example.pos_android.data.model.CommonResponse;
 import com.example.pos_android.data.model.ImagePickerResponse;
 import com.example.pos_android.data.model.LoginResponse;
 import com.example.pos_android.data.model.RegisterResponse;
+import com.example.pos_android.data.model.UserHomeResponse;
 import com.example.pos_android.data.model.request.AddFoodRequestData;
 import com.example.pos_android.data.model.request.LoginRequestData;
 import com.example.pos_android.data.model.request.RegisterRequestData;
 import com.example.pos_android.presenter.AddFoodPresenter;
 import com.example.pos_android.presenter.LoginPresenter;
 import com.example.pos_android.presenter.RegisterPresenter;
-
-import java.io.File;
+import com.example.pos_android.presenter.UserHomePresenter;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -106,7 +106,7 @@ public class ApiDataManager {
                 apiInterFace = ApiClient.getClientServerApi().create(ApiInterFace.class);
 
             apiInterFace
-                    .getImageUrl("Bearer "+token,image)
+                    .getImageUrl("Bearer " + token, image)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new Observer<ImagePickerResponse>() {
@@ -138,13 +138,13 @@ public class ApiDataManager {
         }
     }
 
-    public void addFood(AddFoodRequestData requestData, String token,AddFoodPresenter mPresenter) {
+    public void addFood(AddFoodRequestData requestData, String token, AddFoodPresenter mPresenter) {
         try {
             if (apiInterFace == null)
                 apiInterFace = ApiClient.getClientServerApi().create(ApiInterFace.class);
 
             apiInterFace
-                    .updateFood("Bearer "+token,requestData)
+                    .updateFood("Bearer " + token, requestData)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new Observer<CommonResponse>() {
@@ -176,8 +176,43 @@ public class ApiDataManager {
         }
     }
 
+    public void getUserHomeDetails(String token, UserHomePresenter mPresenter) {
+        try {
+            if (apiInterFace == null)
+                apiInterFace = ApiClient.getClientServerApi().create(ApiInterFace.class);
+
+            apiInterFace
+                    .userHomeDetails("Bearer " + token)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(new Observer<UserHomeResponse>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                        }
+
+                        @Override
+                        public void onNext(UserHomeResponse response) {
+                            mPresenter.onHomeResponseCallback(response);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.e(TAG, "onError: " + e.getMessage());
+                            // mPresenter.onApiError(e.getMessage());
+                            mPresenter.onApiError("Sorry, This user already registered");
+                        }
+
+                        @Override
+                        public void onComplete() {
+                        }
+                    });
 
 
+        } catch (Exception e) {
+            mPresenter.onApiError(e.getMessage());
+            Log.e(TAG, "Exception caught in " + e.getMessage().toString());
+        }
+    }
 
 
 }
