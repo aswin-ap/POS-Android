@@ -19,6 +19,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private LoginPresenter presenter;
     private ActivityLoginBinding binding;
     private SessionManager sessionManager;
+    private boolean isAdmin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             binding.emailLayout.setError(null);
         } else {
             binding.passwordLayout.setError(null);
+
+            isAdmin = binding.txtEmail.getText().toString().trim().equals("admin");
 
             presenter.callLogin(binding.txtEmail.getText().toString().trim(),
                     binding.txtPass.getText().toString().trim());
@@ -90,7 +93,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void showSuccess(String message) {
         showToast(LoginActivity.this, message);
         sessionManager.setLogin(true);
-        startActivity(new Intent(LoginActivity.this, UserHomeActivity.class));
+        if (isAdmin) {
+            sessionManager.setUsertype(SessionManager.UserRoles.ADMIN);
+            startActivity(new Intent(LoginActivity.this, AdminHomeActivity.class));
+        }
+        else {
+            sessionManager.setUsertype(SessionManager.UserRoles.USER);
+            startActivity(new Intent(LoginActivity.this, UserHomeActivity.class));
+        }
+
         finishAffinity();
     }
 

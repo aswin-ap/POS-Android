@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -45,6 +46,9 @@ public class TableReservationFragment extends Fragment implements TableClickList
     }
 
     private void btnClick() {
+        binding.ivBack.setOnClickListener(v -> {
+            Navigation.findNavController(binding.getRoot()).popBackStack();
+        });
         binding.countLayout.ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

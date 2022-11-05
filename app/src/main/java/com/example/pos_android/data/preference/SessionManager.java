@@ -14,6 +14,7 @@ public class SessionManager {
     private static final String IS_LOGGED_IN = "isLoggedIn";
     private static final String USER_TOKEN = "userToken";
     private static final String USERNAME = "userName";
+    private static final String USERTYPE = "userType";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -36,6 +37,11 @@ public class SessionManager {
         editor.apply();
     }
 
+    public void setUsertype(UserRoles roles) {
+        editor.putString(USERTYPE, String.valueOf(roles));
+        editor.apply();
+    }
+
 
     public boolean isLoggedIn() {
         return sharedPref.getBoolean(IS_LOGGED_IN, false);
@@ -49,9 +55,17 @@ public class SessionManager {
         return sharedPref.getString(USERNAME, "");
     }
 
+    public String getUserType() {
+        return sharedPref.getString(USERTYPE, "");
+    }
+
     public void clear() {
         editor.clear();
         editor.apply();
+    }
+
+    public enum UserRoles{
+        ADMIN,USER,KITCHEN
     }
 }
 

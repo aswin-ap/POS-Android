@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +27,6 @@ import java.util.List;
 
 
 public class HomeFragment extends BaseFragment implements UserHomeContract.View {
-    View view;
     PopularAdapter popularAdapter;
     PopularAdapter recentAdapter;
     UserHomePresenter presenter;
@@ -40,21 +41,23 @@ public class HomeFragment extends BaseFragment implements UserHomeContract.View 
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         initData();
-        binding.imageSlider.setImageList(slideModels);
 
+        binding.imageSlider.setImageList(slideModels);
         PopularAdapter popularAdapter = new PopularAdapter(popularArrayList);
         binding.popularRecyclerview.setAdapter(popularAdapter);
         binding.popularRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
-
-        return binding.getRoot();
     }
 
     private void initData() {

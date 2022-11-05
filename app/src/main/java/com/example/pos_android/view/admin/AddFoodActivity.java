@@ -45,6 +45,9 @@ public class AddFoodActivity extends BaseActivity implements AddFoodContract.Vie
                     imageChooser();
             }
         });
+        binding.iconBack.setOnClickListener(v -> {
+            onBackPressed();
+        });
         binding.btnAdd.setOnClickListener(v -> {
             validateFields();
         });
@@ -116,11 +119,11 @@ public class AddFoodActivity extends BaseActivity implements AddFoodContract.Vie
         // Checking whether user granted the permission or not.
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             // Showing the toast message
-            showToast(AddFoodActivity.this, "Permission granted");
+           // showToast(AddFoodActivity.this, "Permission granted");
             hasPermission = true;
         } else {
             hasPermission = false;
-            showToast(AddFoodActivity.this, "Permission denied");
+          //  showToast(AddFoodActivity.this, "Permission denied");
         }
     }
     private String getRealPathFromURI(Uri contentURI) {
@@ -149,7 +152,7 @@ public class AddFoodActivity extends BaseActivity implements AddFoodContract.Vie
     @Override
     public void showImageSuccess(ImagePickerResponse response) {
         imagePath = response.getData().getFileDownloadUri();
-        showToast(AddFoodActivity.this, response.getMessage());
+        //showToast(AddFoodActivity.this, response.getMessage());
     }
 
     @Override

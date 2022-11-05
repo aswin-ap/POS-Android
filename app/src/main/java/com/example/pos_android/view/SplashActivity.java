@@ -26,15 +26,19 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
 
             if (sessionManager.isLoggedIn()) {
-                Intent i = new Intent(SplashActivity.this,
-                        UserHomeActivity.class);
-                startActivity(i);
+                if (sessionManager.getUserType().equals(SessionManager.UserRoles.ADMIN.toString())) {
+                    Intent i = new Intent(SplashActivity.this,
+                            AdminHomeActivity.class);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(SplashActivity.this,
+                            UserHomeActivity.class);
+                    startActivity(i);
+                }
                 finishAffinity();
             } else {
-//                Intent i = new Intent(SplashActivity.this,
-//                        LoginActivity.class);
-                 Intent i = new Intent(SplashActivity.this,
-                        UserHomeActivity.class);
+                Intent i = new Intent(SplashActivity.this,
+                        LoginActivity.class);
                 startActivity(i);
                 finishAffinity();
             }
