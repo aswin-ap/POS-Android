@@ -66,11 +66,12 @@ public class HomeFragment extends BaseFragment implements UserHomeContract.View 
         presenter = new UserHomePresenter(HomeFragment.this, requireContext());
         presenter.getHomeDetails();
 
+        slideModels.clear();
         slideModels.add(new SlideModel(R.drawable.poster, ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://c8.alamy.com/comp/2AAMYCB/set-of-poster-offer-delicious-fast-food-2AAMYCB.jpg", ScaleTypes.FIT));
         slideModels.add(new SlideModel("https://thumbs.dreamstime.com/z/fast-food-best-offer-banner-template-restaurant-cafe-design-element-poster-invitation-voucher-flyer-coupon-brochure-vector-153266434.jpg", ScaleTypes.FIT));
 
-
+        recentArray.clear();
         recentArray.add(new PopularModel("Biriyani", R.drawable.dm1, "biriyaniii"));
         recentArray.add(new PopularModel("Mandhi", R.drawable.dm2, "delicious food"));
         recentArray.add(new PopularModel("Curry", R.drawable.dm3, "Fish curry"));
@@ -107,6 +108,7 @@ public class HomeFragment extends BaseFragment implements UserHomeContract.View 
     @Override
     public void showUserResponse(UserHomeResponse response) {
        // showToast(requireContext(), response.getMessage());
+        popularArrayList.clear();
         for (UserHomeResponse.PopularFood food : response.getData().getPopularFoods()) {
             popularArrayList.add(new PopularModel(
                     food.getName(), food.getImage(), food.getPrice()
