@@ -1,5 +1,6 @@
 package com.example.pos_android.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.pos_android.R;
 import com.example.pos_android.data.model.PopularModel;
 
@@ -16,13 +19,21 @@ import java.util.ArrayList;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
     // ... ViewHolder class and its constructor as per above
-
-
     ArrayList<PopularModel> list;
+    private boolean isFromNetwork;
+    private Context context;
 
     // Constructor
-    public PopularAdapter(ArrayList<PopularModel> list){
+    public PopularAdapter(ArrayList<PopularModel> list, Context cOntext) {
         this.list = list;
+        this.isFromNetwork = true;
+        this.context = cOntext;
+    }
+
+    public PopularAdapter(ArrayList<PopularModel> list, boolean isFromNetwork, Context cOntext) {
+        this.list = list;
+        this.isFromNetwork = isFromNetwork;
+        this.context = cOntext;
     }
 
     // Creating a viewHolder
@@ -47,7 +58,13 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
         // Setting views with the corresponding data
         ImageView imageView = holder.subjectImageView;
-        imageView.setImageResource(currentItem.getImageId());
+        if (isFromNetwork) {
+            Glide.with(context)
+                    .load(currentItem.getImageUrl())
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(imageView);
+        } else
+            imageView.setImageResource(currentItem.getImageId());
 
         TextView subjectTextView = holder.subjectTextView;
         subjectTextView.setText(currentItem.getName());
@@ -62,7 +79,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         return list.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView subjectImageView;
         public TextView subjectTextView;
         public TextView numOfLikesTextView;

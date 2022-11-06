@@ -55,9 +55,10 @@ public class HomeFragment extends BaseFragment implements UserHomeContract.View 
         initData();
 
         binding.imageSlider.setImageList(slideModels);
-        PopularAdapter popularAdapter = new PopularAdapter(popularArrayList);
-        binding.popularRecyclerview.setAdapter(popularAdapter);
-        binding.popularRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
+
+        binding.recentRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
+        recentAdapter = new PopularAdapter(recentArray,false,requireContext());
+        binding.recentRecyclerview.setAdapter(recentAdapter);
     }
 
     private void initData() {
@@ -70,11 +71,11 @@ public class HomeFragment extends BaseFragment implements UserHomeContract.View 
         slideModels.add(new SlideModel("https://thumbs.dreamstime.com/z/fast-food-best-offer-banner-template-restaurant-cafe-design-element-poster-invitation-voucher-flyer-coupon-brochure-vector-153266434.jpg", ScaleTypes.FIT));
 
 
-        popularArrayList.add(new PopularModel("Biriyani", R.drawable.dm1, "biriyaniii"));
-        popularArrayList.add(new PopularModel("Mandhi", R.drawable.dm2, "delicious food"));
-        popularArrayList.add(new PopularModel("Curry", R.drawable.dm3, "Fish curry"));
-        popularArrayList.add(new PopularModel("Breakfast", R.drawable.dm4, "Break fast combo"));
-        popularArrayList.add(new PopularModel("Meals", R.drawable.dm1, "Good meals"));
+        recentArray.add(new PopularModel("Biriyani", R.drawable.dm1, "biriyaniii"));
+        recentArray.add(new PopularModel("Mandhi", R.drawable.dm2, "delicious food"));
+        recentArray.add(new PopularModel("Curry", R.drawable.dm3, "Fish curry"));
+        recentArray.add(new PopularModel("Breakfast", R.drawable.dm4, "Break fast combo"));
+        recentArray.add(new PopularModel("Meals", R.drawable.dm1, "Good meals"));
 
         binding.ivBooking.setOnClickListener(v -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_homeFragment_to_tableReservationFragment);
@@ -106,13 +107,14 @@ public class HomeFragment extends BaseFragment implements UserHomeContract.View 
     @Override
     public void showUserResponse(UserHomeResponse response) {
        // showToast(requireContext(), response.getMessage());
-        for (UserHomeResponse.RecentFood food : response.getData().getRecentFoods()) {
-            recentArray.add(new PopularModel(
+        for (UserHomeResponse.PopularFood food : response.getData().getPopularFoods()) {
+            popularArrayList.add(new PopularModel(
                     food.getName(), food.getImage(), food.getPrice()
             ));
         }
-        binding.recentRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
-        recentAdapter = new PopularAdapter(recentArray);
-        binding.recentRecyclerview.setAdapter(recentAdapter);
+        popularAdapter = new PopularAdapter(popularArrayList,requireContext());
+        binding.popularRecyclerview.setAdapter(popularAdapter);
+        binding.popularRecyclerview.setLayoutManager(new LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false));
+
     }
 }
